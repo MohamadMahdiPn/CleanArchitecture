@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33424.131
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F44BA310-BA04-4343-936A-9E788E06090F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{38BA1B43-591B-4ECE-8E22-7F5BCFF495F7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{D06728CF-F000-4FB3-B017-B921E94DC902}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{9E94954E-9270-4608-B3C1-350A4F176291}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{CF709344-C19A-4DEA-9B79-A74D69C746F2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UI", "UI", "{31EAAEE1-5E72-4EB3-B704-D475AE22E336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HR_Management.Domain", "..\HR_Management.Domain\HR_Management.Domain.csproj", "{F35648A7-005C-46A9-A244-ACEF5D754951}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F35648A7-005C-46A9-A244-ACEF5D754951}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F35648A7-005C-46A9-A244-ACEF5D754951}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F35648A7-005C-46A9-A244-ACEF5D754951}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F35648A7-005C-46A9-A244-ACEF5D754951}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D06728CF-F000-4FB3-B017-B921E94DC902} = {F44BA310-BA04-4343-936A-9E788E06090F}
+		{9E94954E-9270-4608-B3C1-350A4F176291} = {F44BA310-BA04-4343-936A-9E788E06090F}
+		{CF709344-C19A-4DEA-9B79-A74D69C746F2} = {F44BA310-BA04-4343-936A-9E788E06090F}
+		{31EAAEE1-5E72-4EB3-B704-D475AE22E336} = {F44BA310-BA04-4343-936A-9E788E06090F}
+		{F35648A7-005C-46A9-A244-ACEF5D754951} = {9E94954E-9270-4608-B3C1-350A4F176291}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8F8B9C9-375D-4B3E-99B7-B78CD4865F82}
+	EndGlobalSection
+EndGlobal
