@@ -4,14 +4,14 @@ using HR_Management.Application.Features.LeaveTypes.Requests.Queries;
 using HR_Management.Application.Persistance.Contracts;
 using MediatR;
 
-namespace HR_Management.Application.Features.LeaveTypes.Handlers.Queries;
+namespace HR_Management.Application.Features.LeaveAllocations.Handlers.Queries;
 
-public class GetLeaveTypeListRequestHandler:IRequestHandler<GetLeaveAllocationListRequest , List<LeaveTypeDto>>
+public class GetLeaveAllocationListRequestHandler:IRequestHandler<GetLeaveAllocationListRequest , List<LeaveTypeDto>>
 {
-    private readonly ILeaveTypeRepository _leaveTypeRepository;
+    private readonly ILeaveAllocationRepository _leaveTypeRepository;
     private readonly IMapper _mapper;
 
-    public GetLeaveTypeListRequestHandler(ILeaveTypeRepository leaveTypeRepository, IMapper mapper)
+    public GetLeaveAllocationListRequestHandler(ILeaveAllocationRepository leaveTypeRepository, IMapper mapper)
     {
         _leaveTypeRepository = leaveTypeRepository;
         _mapper = mapper;

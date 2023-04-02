@@ -7,6 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\LeaveAllocation\" />
+    <Folder Include="Features\LeaveAllocations\Handlers\Commands\" />
+    <Folder Include="Features\LeaveAllocations\Requests\Commands\" />
+    <Folder Include="Features\LeaveRequests\Handlers\Commands\" />
+    <Folder Include="Features\LeaveRequests\Requests\Commands\" />
     <Folder Include="Features\LeaveTypes\Handlers\Commands\" />
     <Folder Include="Features\LeaveTypes\Requests\Commands\" />
     <Folder Include="Persistance\Contracts\" />
