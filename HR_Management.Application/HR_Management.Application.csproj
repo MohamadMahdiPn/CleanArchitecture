@@ -7,9 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\LeaveAllocation\Validators\" />
     <Folder Include="DTOs\LeaveRequest\Validators\" />
     <Folder Include="Features\LeaveAllocations\Handlers\Commands\" />
     <Folder Include="Features\LeaveAllocations\Requests\Commands\" />
+    <Folder Include="Responses\" />
     <Folder Include="Persistance\Contracts\" />
   </ItemGroup>
 
