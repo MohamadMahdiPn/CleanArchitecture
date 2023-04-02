@@ -6,7 +6,7 @@ public interface IGenericRepository<TEntity> where TEntity : class
     Task<IReadOnlyList<TEntity>> GetAll();
     Task<bool> Exist(int id);
     Task<TEntity> Add(TEntity entity);
-    Task<TEntity> Update(TEntity entity);
-    Task<TEntity> Delete(TEntity entity);
+    Task Update(TEntity entity);
+    Task Delete(TEntity entity);
 
 }
