@@ -11,7 +11,7 @@ public class LeaveRequest : BaseDomainEntity
     public int LeaveTypeId { get; set; }
     public DateTime RequestDate { get; set; }
     public string RequestComment { get; set; }
-    public DateTime ActionDate { get; set; }
+    public DateTime? ActionDate { get; set; }
     public bool? Approved { get; set; }
     public bool? Cancelled { get; set; }
 }
