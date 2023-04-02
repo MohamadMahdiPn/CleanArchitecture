@@ -5,7 +5,7 @@ using HR_Management.Domain.Common;
 
 namespace HR_Management.Application.DTOs.LeaveRequest;
 
-public class LeaveRequestDto : BaseDto
+public class LeaveRequestDto : BaseDto, ILeaveRequestDto
 {
     public DateTime FromDate { get; set; }
     public DateTime ToDate { get; set; }

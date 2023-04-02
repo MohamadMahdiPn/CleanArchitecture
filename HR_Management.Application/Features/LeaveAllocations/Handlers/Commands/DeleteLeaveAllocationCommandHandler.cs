@@ -19,6 +19,7 @@ public class DeleteLeaveAllocationCommandHandler:IRequestHandler<DeleteLeaveAllo
     }
 
     #endregion
+
     public async Task Handle(DeleteLeaveAllocationCommand request, CancellationToken cancellationToken)
     {
         var leaveAllocation =  await _leaveAllocationRepository.GetByIdAsync(request.Id);
