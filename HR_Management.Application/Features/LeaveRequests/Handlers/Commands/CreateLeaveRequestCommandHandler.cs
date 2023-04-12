@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using HR_Management.Application.Contracts.Infrastructure;
 using HR_Management.Application.DTOs.LeaveRequest.Validators;
 using HR_Management.Application.DTOs.LeaveType.Validators;
 using HR_Management.Application.Exceptions;
 using HR_Management.Application.Features.LeaveRequests.Requests.Commands;
 using HR_Management.Application.Contracts.Persistence;
+using HR_Management.Application.Models;
 using HR_Management.Application.Responses;
 using HR_Management.Domain;
 using MediatR;
@@ -17,12 +19,14 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
     private readonly ILeaveRequestRepository _leaveRequestRepository;
     private readonly ILeaveTypeRepository _leaveTypeRepository;
     private readonly IMapper _mapper;
+    private readonly IEmailSender _emailSender;
 
-    public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, ILeaveTypeRepository leaveTypeRepository)
+    public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, ILeaveTypeRepository leaveTypeRepository, IEmailSender emailSender)
     {
         _leaveRequestRepository = leaveRequestRepository;
         _mapper = mapper;
         _leaveTypeRepository = leaveTypeRepository;
+        _emailSender = emailSender;
     }
 
     #endregion
@@ -47,7 +51,25 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
         response.Message = "Creation Successful";
         response.Id = leaveRequest.Id;
 
+        #region SendEmail
 
+        var email = new Email()
+        {
+            To = "Mamad@mamad.com",
+            Subject = "leave request submitted",
+            Body = "body"
+        };
+        try
+        {
+            var sendResult = await _emailSender.SendEmail(email);
+        }
+        catch (Exception ex)
+        {
+           //log
+        }
+        
+
+        #endregion
 
         return response;
     }
