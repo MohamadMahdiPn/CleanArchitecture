@@ -17,7 +17,16 @@ builder.Services.ConfigurePersistenceServices(builder.Configuration);
 builder.Services.ConfigureApplicationServices();
 builder.Services.ConfigurationInfrastructureServices(builder.Configuration);
 
+builder.Services.AddCors(x =>
+{
+    x.AddPolicy("CorsPolicy", b =>
+    {
+        b.AllowAnyOrigin();
+        b.AllowAnyMethod();
+        b.AllowAnyHeader();
+    });
 
+});
 
 
 
@@ -31,6 +40,8 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("CorsPolicy");
 
 app.MapControllers();
 
