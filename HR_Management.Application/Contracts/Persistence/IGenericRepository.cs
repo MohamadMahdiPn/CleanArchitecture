@@ -1,4 +1,4 @@
-﻿namespace HR_Management.Application.Persistance.Contracts;
+﻿namespace HR_Management.Application.Contracts.Persistence;
 
 public interface IGenericRepository<TEntity> where TEntity : class
 {

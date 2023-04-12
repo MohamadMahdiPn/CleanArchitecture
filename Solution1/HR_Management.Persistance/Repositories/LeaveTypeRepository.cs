@@ -1,4 +1,4 @@
-﻿using HR_Management.Application.Persistance.Contracts;
+﻿using HR_Management.Application.Contracts.Persistence;
 using HR_Management.Domain;
 
 namespace HR_Management.Persistance.Repositories;

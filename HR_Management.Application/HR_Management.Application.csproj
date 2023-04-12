@@ -12,7 +12,6 @@
     <Folder Include="Features\LeaveAllocations\Handlers\Commands\" />
     <Folder Include="Features\LeaveAllocations\Requests\Commands\" />
     <Folder Include="Responses\" />
-    <Folder Include="Persistance\Contracts\" />
   </ItemGroup>
 
   <ItemGroup>
