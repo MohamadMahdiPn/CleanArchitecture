@@ -3,13 +3,13 @@ using HR_Management.Application.Contracts.Persistence;
 
 namespace HR_Management.Application.DTOs.LeaveRequest.Validators;
 
-public class CreateLeaveRequestDtoValidator:AbstractValidator<CreateLeaveRequestDto>
+public class CreateLeaveRequestDtoValidator:AbstractValidator<LeaveRequestDto>
 {
-    private readonly ILeaveTypeRepository _leaveTypeRepository;
-    public CreateLeaveRequestDtoValidator(ILeaveTypeRepository leaveTypeRepository)
+    private readonly ILeaveRequestRepository _leaveRequestRepository;
+    public CreateLeaveRequestDtoValidator(ILeaveRequestRepository leaveTypeRepository)
     {
-        _leaveTypeRepository = leaveTypeRepository;
-        Include(new ILeaveRequestDtoValidator(_leaveTypeRepository));
+        _leaveRequestRepository = leaveTypeRepository;
+        Include(new ILeaveRequestDtoValidator(_leaveRequestRepository));
         
         //RuleFor(p => p.FromDate)
         //    .LessThan(p => p.ToDate)

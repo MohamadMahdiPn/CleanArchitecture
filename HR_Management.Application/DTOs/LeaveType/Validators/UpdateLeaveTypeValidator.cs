@@ -6,7 +6,7 @@ public class UpdateLeaveTypeValidator : AbstractValidator<LeaveTypeDto>
 {
     public UpdateLeaveTypeValidator()
     {
-        Include(new ILeaveTypeDtoValidator());
+        Include(new LeaveTypeDtoValidator());
 
         RuleFor(p => p.Id).NotNull()
             .WithMessage("{PropertyName} is required.");

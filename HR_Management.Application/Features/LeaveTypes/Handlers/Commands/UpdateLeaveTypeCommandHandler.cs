@@ -27,7 +27,7 @@ public class UpdateLeaveTypeCommandHandler:IRequestHandler<UpdateLeaveTypeComman
     public async Task<Unit> Handle(UpdateLeaveTypeCommand request, CancellationToken cancellationToken)
     {
 
-        var validator = new ILeaveTypeDtoValidator();
+        var validator = new LeaveTypeDtoValidator();
         var validationResult = await validator.ValidateAsync(request.LeaveTypeDto, cancellationToken);
         if (!validationResult.IsValid)
             throw new CustomValidationException(validationResult);

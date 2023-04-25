@@ -2,9 +2,9 @@
 
 namespace HR_Management.Application.DTOs.LeaveType.Validators;
 
-public class ILeaveTypeDtoValidator:AbstractValidator<IleaveTypeDto>
+public class LeaveTypeDtoValidator:AbstractValidator<IleaveTypeDto>
 {
-    public ILeaveTypeDtoValidator()
+    public LeaveTypeDtoValidator()
     {
         RuleFor(x => x.Name)
             .NotEmpty().WithMessage("{PropertyName} Can not be null")

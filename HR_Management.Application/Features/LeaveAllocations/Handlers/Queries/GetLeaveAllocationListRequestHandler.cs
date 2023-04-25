@@ -1,25 +1,25 @@
 ﻿using AutoMapper;
-using HR_Management.Application.DTOs.LeaveType;
-using HR_Management.Application.Features.LeaveTypes.Requests.Queries;
 using HR_Management.Application.Contracts.Persistence;
+using HR_Management.Application.Features.LeaveAllocations.Requests.Queries;
 using MediatR;
+using HR_Management.Application.DTOs.LeaveAllocation;
 
 namespace HR_Management.Application.Features.LeaveAllocations.Handlers.Queries;
 
-public class GetLeaveAllocationListRequestHandler:IRequestHandler<GetLeaveAllocationListRequest , List<LeaveTypeDto>>
+public class GetLeaveAllocationListRequestHandler:IRequestHandler<GetLeaveAllocationListRequest , List<LeaveAllocationDto>>
 {
-    private readonly ILeaveAllocationRepository _leaveTypeRepository;
+
+    private readonly ILeaveAllocationRepository _leaveAllocationRepository;
     private readonly IMapper _mapper;
 
-    public GetLeaveAllocationListRequestHandler(ILeaveAllocationRepository leaveTypeRepository, IMapper mapper)
+    public GetLeaveAllocationListRequestHandler(ILeaveAllocationRepository leaveAllocationRepository, IMapper mapper)
     {
-        _leaveTypeRepository = leaveTypeRepository;
+        _leaveAllocationRepository = leaveAllocationRepository;
         _mapper = mapper;
     }
-
-    public async Task<List<LeaveTypeDto>> Handle(GetLeaveAllocationListRequest request, CancellationToken cancellationToken)
+    public async Task<List<LeaveAllocationDto>> Handle(GetLeaveAllocationListRequest request, CancellationToken cancellationToken)
     {
-        var leaveTypeList = await _leaveTypeRepository.GetAll();
-        return _mapper.Map<List<LeaveTypeDto>>(leaveTypeList);
+        var leaveAllocationList = await _leaveAllocationRepository.GetAll();
+        return _mapper.Map<List<LeaveAllocationDto>>(leaveAllocationList);
     }
 }

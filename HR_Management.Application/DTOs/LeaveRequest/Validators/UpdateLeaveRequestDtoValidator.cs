@@ -3,15 +3,15 @@ using HR_Management.Application.Contracts.Persistence;
 
 namespace HR_Management.Application.DTOs.LeaveRequest.Validators;
 
-public class UpdateLeaveRequestDtoValidator : AbstractValidator<UpdateLeaveRequestDto>
+public class UpdateLeaveRequestDtoValidator : AbstractValidator<ILeaveRequestDto>
 {
-    private readonly ILeaveTypeRepository _leaveTypeRepository;
+    private readonly ILeaveRequestRepository _leaveRequestRepository;
 
-    public UpdateLeaveRequestDtoValidator(ILeaveTypeRepository leaveTypeRepository)
+    public UpdateLeaveRequestDtoValidator(ILeaveRequestRepository leaveRequestRepository)
     {
-        _leaveTypeRepository = leaveTypeRepository;
+        _leaveRequestRepository = leaveRequestRepository;
 
-        Include(new ILeaveRequestDtoValidator(_leaveTypeRepository));
+        Include(new ILeaveRequestDtoValidator(_leaveRequestRepository));
         RuleFor(p => p.Id)
             .NotNull()
             .WithMessage("{PropertyName} is required.");

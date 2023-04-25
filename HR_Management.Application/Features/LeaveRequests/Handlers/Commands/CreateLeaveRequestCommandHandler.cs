@@ -17,15 +17,13 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
     #region Constructor
 
     private readonly ILeaveRequestRepository _leaveRequestRepository;
-    private readonly ILeaveTypeRepository _leaveTypeRepository;
     private readonly IMapper _mapper;
     private readonly IEmailSender _emailSender;
 
-    public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, ILeaveTypeRepository leaveTypeRepository, IEmailSender emailSender)
+    public CreateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, IEmailSender emailSender)
     {
         _leaveRequestRepository = leaveRequestRepository;
         _mapper = mapper;
-        _leaveTypeRepository = leaveTypeRepository;
         _emailSender = emailSender;
     }
 
@@ -34,7 +32,7 @@ public class CreateLeaveRequestCommandHandler : IRequestHandler<CreateLeaveReque
     public async Task<BaseCommandResponse> Handle(CreateLeaveRequestCommand request, CancellationToken cancellationToken)
     {
         var response = new BaseCommandResponse();
-        var validator = new CreateLeaveRequestDtoValidator(_leaveTypeRepository);
+        var validator = new CreateLeaveRequestDtoValidator(_leaveRequestRepository);
         var validationResult = await validator.ValidateAsync(request.LeaveRequestDto, cancellationToken);
         if (!validationResult.IsValid)
         {

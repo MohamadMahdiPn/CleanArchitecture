@@ -15,14 +15,13 @@ public class UpdateLeaveRequestCommandHandler:IRequestHandler<UpdateLeaveRequest
     #region Constructor
 
     private readonly ILeaveRequestRepository _leaveRequestRepository;
-    private readonly ILeaveTypeRepository _leaveTypeRepository;
     private readonly IMapper _mapper;
 
-    public UpdateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper, ILeaveTypeRepository leaveTypeRepository)
+    public UpdateLeaveRequestCommandHandler(ILeaveRequestRepository leaveRequestRepository, IMapper mapper)
     {
         _leaveRequestRepository = leaveRequestRepository;
         _mapper = mapper;
-        _leaveTypeRepository = leaveTypeRepository;
+       
     }
 
     #endregion
@@ -30,7 +29,7 @@ public class UpdateLeaveRequestCommandHandler:IRequestHandler<UpdateLeaveRequest
     public async Task<Unit> Handle(UpdateLeaveRequestCommand request, CancellationToken cancellationToken)
     {
         
-        var validator = new UpdateLeaveRequestDtoValidator(_leaveTypeRepository);
+        var validator = new UpdateLeaveRequestDtoValidator(_leaveRequestRepository);
         var validationResult = await validator.ValidateAsync(request.LeaveRequestDto, cancellationToken);
         if (!validationResult.IsValid)
             throw new CustomValidationException(validationResult);
