@@ -43,7 +43,7 @@ namespace HR_Management.Api.Controllers
         #region Post
 
         [HttpPost]
-        public async Task<ActionResult> Post([FromBody] LeaveRequestDto leaveRequestDto)
+        public async Task<ActionResult> Post([FromBody] CreateLeaveRequestDto leaveRequestDto)
         {
             var command = new CreateLeaveRequestCommand() {LeaveRequestDto = leaveRequestDto};
             var response = await _mediator.Send(command);
@@ -55,9 +55,9 @@ namespace HR_Management.Api.Controllers
         #region Put
 
         [HttpPut("{id}")]
-        public async Task<ActionResult> Put(int id, [FromBody] LeaveRequestDto leaveRequestDto)
+        public async Task<ActionResult> Put(int id, [FromBody] UpdateLeaveRequestDto leaveRequestDto)
         {
-            var command = new UpdateLeaveRequestCommand() {Id = id,};
+            var command = new UpdateLeaveRequestCommand() { Id = id, LeaveRequestDto = leaveRequestDto };
             await _mediator.Send(command);
             return NoContent();
         }
@@ -76,5 +76,16 @@ namespace HR_Management.Api.Controllers
 
         #endregion
 
+
+        #region Change
+
+        [HttpPut("changeapproval/{id}")]
+        public async Task<ActionResult> ChangeApproval(int id, [FromBody] ChangeLeaveRequestApprovalDto changeLeavingRequestDto)
+        {
+            var command = new UpdateLeaveRequestCommand() {Id = id ,ChangeLeaveRequestApprovalDto = changeLeavingRequestDto };
+            await _mediator.Send(command);
+            return NoContent();
+        }
+        #endregion
     }
 }
