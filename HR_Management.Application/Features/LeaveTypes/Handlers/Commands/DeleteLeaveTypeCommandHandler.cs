@@ -22,13 +22,13 @@ public class DeleteLeaveTypeCommandHandler:IRequestHandler<DeleteLeaveTypeComman
 
     #endregion
 
-    public async Task Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteLeaveTypeCommand request, CancellationToken cancellationToken)
     {
         var leaveType = await _leaveTypeRepository.GetByIdAsync(request.Id);
         if (leaveType == null)
             throw new NotFoundException(nameof(LeaveType),request.Id);
         
         await _leaveTypeRepository.Delete(leaveType);
-
+        return Unit.Value;
     }
 }

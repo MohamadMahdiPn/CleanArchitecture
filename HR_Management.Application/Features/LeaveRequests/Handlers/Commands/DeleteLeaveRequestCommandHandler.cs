@@ -22,12 +22,13 @@ public class DeleteLeaveRequestCommandHandler:IRequestHandler<DeleteLeaveRequest
 
     #endregion
 
-    public async Task Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
+    public async Task<Unit> Handle(DeleteLeaveRequestCommand request, CancellationToken cancellationToken)
     {
         var leaveRequest = await _leaveRequestRepository.GetByIdAsync(request.Id);
         if (leaveRequest == null)
             throw new NotFoundException(nameof(LeaveRequest), request.Id);
 
         await _leaveRequestRepository.Delete(leaveRequest);
+        return Unit.Value;
     }
 }
