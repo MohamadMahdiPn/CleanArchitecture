@@ -7,3 +7,20 @@ public class Response<T>
     public bool Success { get; set; }
     public T Data { get; set; }
 }
+
+public partial interface IClient
+{
+    public HttpClient HttpClient { get; }
+    
+}
+
+public partial class Client : IClient
+{
+    public HttpClient HttpClient
+    {
+        get
+        {
+            return _httpClient;
+        }
+    }
+}
