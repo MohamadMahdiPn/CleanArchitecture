@@ -6,8 +6,9 @@ namespace HR_Management.UI.Contracts;
 public interface ILeaveTypeService
 {
     Task<List<LeaveTypeVM>> GetLeaveTypes();
-    Task<LeaveTypeVM> GetLeaveType(int id);
+    Task<LeaveTypeVM> GetLeaveTypeDetails(int id);
+
     Task<Response<int>> CreateLeaveType(LeaveTypeVM leaveType);
-    Task UpdateLeaveType(LeaveTypeVM leaveType);
-    Task DeleteLeaveType(LeaveTypeVM leaveType);
+    Task<Response<int>> UpdateLeaveType(int id,LeaveTypeVM leaveType);
+    Task<Response<int>> DeleteLeaveType(int id);
 }

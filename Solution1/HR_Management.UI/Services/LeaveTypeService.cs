@@ -1,6 +1,112 @@
-﻿namespace HR_Management.UI.Services;
+﻿using AutoMapper;
+using HR_Management.UI.Contracts;
+using HR_Management.UI.Models;
+using HR_Management.UI.Services.Base;
 
-public class LeaveTypeService
+namespace HR_Management.UI.Services;
+
+public class LeaveTypeService:BaseHttpService , ILeaveTypeService
 {
+    #region Constructor
+
+    protected readonly ILocalStorageService _localStorage;
+    protected readonly IClient _client;
+    protected readonly IMapper _mapper;
+    public LeaveTypeService(ILocalStorageService localStorage, IClient client, IMapper mapper) : base(localStorage, client)
+    {
+        _localStorage = localStorage;
+        _client = client;
+        _mapper = mapper;
+    }
+
+    #endregion
+
+
+    #region Get
+
+    public async Task<LeaveTypeVM> GetLeaveTypeDetails(int id)
+    {
+        var leaveType = await _client.LeaveTypesGETAsync(id);
+        return _mapper.Map<LeaveTypeVM>(leaveType);
+    }
+
+    public async Task<List<LeaveTypeVM>> GetLeaveTypes()
+    {
+        var leaveTypes = await _client.LeaveTypesAllAsync();
+        return _mapper.Map<List<LeaveTypeVM>>(leaveTypes);
+    }
+
+    #endregion
+
+
+    #region Create
+
+     public async Task<Response<int>> CreateLeaveType(LeaveTypeVM leaveType)
+    {
+        try
+        {
+            var response = new Response<int>();
+            CreateLeaveTypeDto createLeaveTypeDto = _mapper.Map<CreateLeaveTypeDto>(leaveType);
+
+            var apiResponse =await _client.LeaveTypesPOSTAsync(createLeaveTypeDto);
+
+            if (apiResponse.Success)
+            {
+                response.Data = apiResponse.Id;
+                response.Success = true;
+            }
+            else
+            {
+                foreach (var responseValidationError in apiResponse.Errors)
+                {
+                    response.ValidationErrors += responseValidationError + Environment.NewLine;
+                }
+            }
+            return response;
+
+        }
+        catch (ApiException e)
+        {
+            return ConvertApiException<int>(e);
+        }
+    }
+
+    #endregion
+
+    #region Update  
+
+    public async Task<Response<int>> UpdateLeaveType(int id, LeaveTypeVM leaveType)
+    {
+        try
+        {
+            LeaveTypeDto leaveTypeDto = _mapper.Map<LeaveTypeDto>(leaveType);
+            await _client.LeaveTypesPUTAsync(id, leaveTypeDto);
+            return new Response<int> { Success = true };
+        }
+        catch (ApiException ex)
+        {
+            return ConvertApiException<int>(ex);
+        }
+    }
+
+
+    #endregion
+
+    #region Delete
+
+    public async Task<Response<int>> DeleteLeaveType(int id)
+    {
+        try
+        {
+            await _client.LeaveTypesDELETEAsync(id);
+            return new Response<int> {Success = true};
+        }
+        catch (ApiException ex)
+        {
+            return ConvertApiException<int>(ex);
+        }
+    }
+
+    #endregion
     
 }
