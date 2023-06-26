@@ -44,6 +44,10 @@ public class CreateLeaveTypeCommandHandler : IRequestHandler<CreateLeaveTypeComm
         else
         {
             var leaveType = _mapper.Map<LeaveType>(request.LeaveTypeDto);
+            leaveType.CreatedDate = DateTime.Now;
+            leaveType.LastModified = DateTime.Now;
+            leaveType.CreatedBy = "mamad";
+            leaveType.LastModifiedBy = "mamad";
             leaveType = await _leaveTypeRepository.Add(leaveType);
             response.Success = true;
             response.Message = "Successful";

@@ -41,7 +41,7 @@ public class LeaveTypeService:BaseHttpService , ILeaveTypeService
 
     #region Create
 
-     public async Task<Response<int>> CreateLeaveType(LeaveTypeVM leaveType)
+     public async Task<Response<int>> CreateLeaveType(CreateLeaveTypeVM leaveType)
     {
         try
         {

@@ -48,6 +48,7 @@ public class GenericRepository<TEntity>:IGenericRepository<TEntity> where TEntit
 
     public async Task<TEntity> Add(TEntity entity)
     {
+        
         await _context.AddAsync(entity);
 
         await _context.SaveChangesAsync();

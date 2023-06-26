@@ -31,10 +31,11 @@ public class UpdateLeaveTypeCommandHandler:IRequestHandler<UpdateLeaveTypeComman
         var validationResult = await validator.ValidateAsync(request.LeaveTypeDto, cancellationToken);
         if (!validationResult.IsValid)
             throw new CustomValidationException(validationResult);
-
+       
         var leaveType = await _leaveTypeRepository.GetByIdAsync(request.LeaveTypeDto.Id);
         _mapper.Map(request.LeaveTypeDto, leaveType);
-
+        leaveType.LastModified = DateTime.Now;
+        leaveType.LastModifiedBy = "mamad";
         await _leaveTypeRepository.Update(leaveType);
 
         return Unit.Value;

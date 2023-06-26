@@ -1,4 +1,6 @@
 ﻿using HR_Management.UI.Contracts;
+using HR_Management.UI.Models;
+using HR_Management.UI.Services.Base;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,72 +23,104 @@ namespace HR_Management.UI.Controllers
         }
 
         // GET: LeaveTypesController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var leaveType = await _leaveTypeService.GetLeaveTypeDetails(id);
+            return View(leaveType);
         }
 
-        // GET: LeaveTypesController/Create
+        #region Create
+
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: LeaveTypesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(CreateLeaveTypeVM createLeaveType)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _leaveTypeService.CreateLeaveType(createLeaveType);
+                if (response.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+
             }
+            return View(createLeaveType);
         }
 
-        // GET: LeaveTypesController/Edit/5
-        public ActionResult Edit(int id)
+        #endregion
+
+        #region Edit
+
+        public async Task<ActionResult> Edit(int id)
         {
-            return View();
+            var leaveType = await _leaveTypeService.GetLeaveTypeDetails(id);
+            return View(leaveType);
         }
 
-        // POST: LeaveTypesController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> Edit(int id, LeaveTypeVM leaveType)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _leaveTypeService.UpdateLeaveType(id,leaveType);
+                if (response.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+
             }
+            return View(leaveType);
         }
 
-        // GET: LeaveTypesController/Delete/5
-        public ActionResult Delete(int id)
+        #endregion
+
+
+
+        public async Task<ActionResult> Delete(int id)
         {
-            return View();
+            var leaveType = await _leaveTypeService.GetLeaveTypeDetails(id);
+            return View(leaveType);
         }
 
-        // POST: LeaveTypesController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> Delete(LeaveTypeVM leaveTypeVm)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                var response = await _leaveTypeService.DeleteLeaveType(leaveTypeVm.Id);
+                if (response.Success)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", response.ValidationErrors);
+
             }
-            catch
+            catch (Exception ex)
             {
-                return View();
+                ModelState.AddModelError("", ex.Message);
+
             }
+
+            return BadRequest();
         }
     }
 }

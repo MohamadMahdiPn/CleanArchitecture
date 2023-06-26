@@ -62,7 +62,7 @@ namespace HR_Management.Api.Controllers
         {
             var command = new UpdateLeaveTypeCommand() {LeaveTypeDto = leaveType};
             await _mediator.Send(command);
-            return NoContent();
+            return StatusCode(200);
         }
 
         #endregion
@@ -74,7 +74,7 @@ namespace HR_Management.Api.Controllers
         {
             var command = new DeleteLeaveTypeCommand() { Id = id};
             await _mediator.Send(command);
-            return NoContent();
+            return StatusCode(200);
         }
 
         #endregion
