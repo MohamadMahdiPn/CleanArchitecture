@@ -8,11 +8,13 @@
 
   <ItemGroup>
     <Folder Include="Contracts\Infrastructure\" />
+    <Folder Include="Contracts\Identity\" />
     <Folder Include="DTOs\LeaveAllocation\Validators\" />
     <Folder Include="DTOs\LeaveRequest\Validators\" />
     <Folder Include="Features\LeaveAllocations\Handlers\Commands\" />
     <Folder Include="Features\LeaveAllocations\Requests\Commands\" />
-    <Folder Include="Models\" />
+    <Folder Include="Models\Identity\" />
+    <Folder Include="Constance\" />
     <Folder Include="Responses\" />
   </ItemGroup>
 
