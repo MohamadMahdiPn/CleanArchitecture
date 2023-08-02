@@ -3,12 +3,14 @@ using HR_Management.Application.Features.LeaveTypes.Requests.Commands;
 using HR_Management.Application.Features.LeaveTypes.Requests.Queries;
 using HR_Management.Application.Responses;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HR_Management.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class LeaveTypesController : ControllerBase
     {
         #region Constructor

@@ -23,6 +23,7 @@
   <ItemGroup>
     <ProjectReference Include="..\HR_Management.Application\HR_Management.Application.csproj" />
     <ProjectReference Include="..\HR_Management.Domain\HR_Management.Domain.csproj" />
+    <ProjectReference Include="..\Solution1\HR_Management.Identity\HR_Management.Identity.csproj" />
     <ProjectReference Include="..\Solution1\HR_Management.Infrastructure\HR_Management.Infrastructure.csproj" />
     <ProjectReference Include="..\Solution1\HR_Management.Persistance\HR_Management.Persistance.csproj" />
   </ItemGroup>
