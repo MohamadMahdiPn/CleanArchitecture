@@ -1,11 +1,13 @@
 ﻿using HR_Management.UI.Contracts;
 using HR_Management.UI.Models;
 using HR_Management.UI.Services.Base;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HR_Management.UI.Controllers
 {
+    [Authorize]
     public class LeaveTypesController : Controller
     {
         private readonly ILeaveTypeService _leaveTypeService;
