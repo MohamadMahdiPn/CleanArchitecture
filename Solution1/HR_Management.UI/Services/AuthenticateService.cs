@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using HR_Management.UI.Models;
 
 namespace HR_Management.UI.Services;
 
@@ -41,7 +42,7 @@ public class AuthenticateService:BaseHttpService, IAuthenticateService
                     CookieAuthenticationDefaults.AuthenticationScheme));
                 var login =  _contextAccessor.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, user);
                 _localStorage.SetStorageValue("token",authenticateResponse.Token);
-                
+                return login.IsCompleted;
             }
 
             return false;
@@ -52,14 +53,15 @@ public class AuthenticateService:BaseHttpService, IAuthenticateService
         }
     }
 
-    public async Task<bool> Register(string firstName, string lastName, string email, string password)
+    public async Task<bool> Register(RegisterVM register)
     {
         RegistrationRequest registrationRequest = new()
         {
-            Email = email,
-            FirstName = firstName,
-            LastName = lastName,
-            Password = password
+            Email = register.Email,
+            FirstName = register.FirstName,
+            LastName = register.LastName,
+            Password = register.Password,
+            UserName = register.UserName
 
         };
         var response = await _client.RegisterAsync(registrationRequest);
